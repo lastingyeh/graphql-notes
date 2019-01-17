@@ -152,7 +152,7 @@ type PostData {
 
 ### Resolvers 定義
 ---
-根據 Layer1 定義方法實作函數(自動回應 Json 格式)
+根據 Layer1 定義方法實作函數(自動回應 Json 格式)
 
 ### 快速開發測試(graphiql)
 ---
