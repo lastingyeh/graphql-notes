@@ -1,0 +1,1 @@
+export const mongodbURL = 'your mongodb connection string'

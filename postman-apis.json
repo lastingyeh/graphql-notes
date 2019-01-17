@@ -1,0 +1,593 @@
+{
+	"info": {
+		"_postman_id": "fb7fd5ca-0cc8-4689-adab-6ee0c734d465",
+		"name": "Node-Complete-Guide",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "creatPost",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Pragma",
+						"value": "no-cache"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080/"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"query\":\"mutation {\\n  createPost(postInput:{title:\\\"post data\\\",content:\\\"my image design\\\",imageUrl:\\\"uploadImg\\\"}){\\n    _id title content imageUrl\\n  }\\n}\",\"variables\":{}}"
+				},
+				"url": {
+					"raw": "{{host}}/graphql",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "posts",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Pragma",
+						"value": "no-cache"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080/"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\": \"query {\\n  posts(page:2) {\\n    posts {\\n      _id title content imageUrl createdAt creator { name }\\n    }\\n    totalPosts\\n  }\\n}\",\n    \"variables\": {}\n}"
+				},
+				"url": {
+					"raw": "{{host}}/graphql",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "653d24c5-537d-4ab9-8967-e9fa4e3424b0",
+						"exec": [
+							"var body = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable('token', body.data.login.token);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Pragma",
+						"value": "no-cache"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080/"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"query\":\"query {\\n  login(email:\\\"test@test.com\\\",password:\\\"test@1234\\\"){\\n    userId token\\n  }\\n}\\n\",\"variables\":null}"
+				},
+				"url": {
+					"raw": "{{host}}/graphql",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post image",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": ""
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/post-image",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"post-image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post by id",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Pragma",
+						"value": "no-cache"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080/"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"query\":\"query {\\n  post(id:\\\"5c3f0cd3c9b0a7346e240746\\\"){\\n    title content imageUrl _id creator {name}\\n  }\\n}\\n\",\"variables\":null}"
+				},
+				"url": {
+					"raw": "{{host}}/graphql",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updatePost",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Pragma",
+						"value": "no-cache"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080/"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"query\":\"mutation {\\n  updatePost(id:\\\"5c3f0cd3c9b0a7346e240746\\\",postInput:{title:\\\"My First Post\\\",content:\\\"Just Post I Got\\\",imageUrl:\\\"\\\"}){\\n    _id title content imageUrl creator {name}\\n  }\\n}\",\"variables\":null}"
+				},
+				"url": {
+					"raw": "{{host}}/graphql",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletePost",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Pragma",
+						"value": "no-cache"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080/"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"query\":\"mutation {\\n  deletePost(id:\\\"5c3ff85f2560f90da634a2de\\\")\\n}\\n\",\"variables\":null}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Pragma",
+						"value": "no-cache"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080/"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"query\":\"query {\\n  user { _id name email status}\\n}\",\"variables\":null}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateStatus",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Pragma",
+						"value": "no-cache"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080/"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"query\":\"mutation {\\n  updateStatus(status:\\\"admin\\\"){\\n    _id name email status\\n  }\\n}\",\"variables\":null}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
