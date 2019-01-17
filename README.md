@@ -27,6 +27,8 @@
 ### Schema 結構
 ---
 
+完整 Schema 定義內容
+
 ```javascript
 const { buildSchema } = require('graphql');
 
@@ -70,7 +72,9 @@ module.exports = buildSchema(`
   }
 `);
 ```
-	
+
+拆解說明
+
 1. 定義 API 大類 (Layer1)
 
 ```json
