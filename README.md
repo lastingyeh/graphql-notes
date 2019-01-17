@@ -73,7 +73,7 @@ module.exports = buildSchema(`
 	
 1. 定義 API 大類 (Layer1)
 
-```js
+```json
 schema {
   query: RootQuery
   mutation: RootMutation
@@ -82,7 +82,7 @@ schema {
 
 2. 定義 API 方法 (Layer2)
 
-```js
+```json
 type RootQuery {
   login(email:String!, password:String!):AuthData!
   posts(page: Int):PostData!
@@ -103,7 +103,7 @@ type RootMutation {
 3. 定義 以上各項定義參數以及回傳型別
 
 * 參數
- ```js
+ ```json
 input UserInputData {
   email:String!
   name:String!
@@ -157,13 +157,15 @@ type PostData {
 ### 快速開發測試(graphiql)
 ---
 
-1. npm install express-graphql
+1. 安裝 express-graphql 
 
-2. 取得上述 schema, resolvers
+        npm install express-graphql
+
+2. 加入對應 schema, resolvers 參數
 
 3. 載入 express middleware
 
-4. 參數設定 {graphiql: true} (相關範例如下)
+4. 參數設定 { graphiql: true } (相關範例如下)
 
 ```javascript
 
@@ -189,11 +191,11 @@ app.use(
 ```
 5. 瀏覽器輸入 localhost:8080/graphql 即可開始測試
 
-### POSTMAN 測試
+### Postman 測試
 
 ---
 
-基本語法皆可使用上述 graphiql直接測試，但若有以下需求則必須使用 Postman處理較方便
+基本語法皆可使用上述 graphiql 直接測試，但若有以下需求則必須使用 Postman 處理較方便
 
 1. header 設定
 
@@ -201,11 +203,11 @@ app.use(
 
 3. formdata 運用
 
-但是因為查詢語法不易撰寫，故可以在graphiql設定後再將查詢語法 import 到 Postman進行測試
+但是因為查詢語法不易撰寫，故可以在 graphiql 設定後再將查詢語法 import 到 Postman 進行測試
 
-[操作說明 How to send graphql query by postman?](https://stackoverflow.com/questions/42520663/how-to-send-graphql-query-by-postman)
+[1. 操作說明 How to send graphql query by postman?](https://stackoverflow.com/questions/42520663/how-to-send-graphql-query-by-postman)
 
-[提供本測試專案所有 Postman 匯入檔](https://github.com/lastingyeh/graphql-notes/blob/master/postman-apis.json)
+[2. 提供本測試專案所有 Postman 匯入檔](https://github.com/lastingyeh/graphql-notes/blob/master/postman-apis.json)
 
 ### 參考資料
 
