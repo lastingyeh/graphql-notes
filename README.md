@@ -152,12 +152,12 @@ type PostData {
 
 ### Resolvers 定義
 ---
-根據Layer1定義方法實作函數(自動回應 Json 格式)
+根據 Layer1 定義方法實作函數(自動回應 Json 格式)
 
-### 查詢測試 (Node Express)
+### 快速開發測試(graphiql)
 ---
 
-1. npm install express-graphql
+1. npm install express-graphql
 
 2. 取得上述 schema, resolvers
 
