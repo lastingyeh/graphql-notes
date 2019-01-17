@@ -163,7 +163,7 @@ type PostData {
 
 3. 載入 express middleware
 
-4. 參數內設定 graphiql: true (相關範例如下)
+4. 參數設定 {graphiql: true} (相關範例如下)
 
 ```javascript
 
